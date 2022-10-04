@@ -67,4 +67,41 @@ public class Calculator {
         return Integer.parseInt(pfExp[0]);
     }
 
+    public boolean isValid(String[] exp){
+        //if expression starts or ends with an operator return false
+        if(isOperand(exp.charAt(0)) || isOperand(exp.charAt(exp.length-1)))
+            return false;
+
+        int openBrackets = 0; //count of openbrackets
+        boolean lastWasOperator = false; //if last character read was an operator
+        boolean openBracketRemaining = false; //if there is an open bracket without a closing one
+
+        for(char c : exp.toCharArray()){
+            if(c == ' ')
+                continue;
+            if(c == '('){
+                openBrackets++;
+                openBracketRemaining = true;
+                continue;
+            }else if(c == ')'){
+                if(openBrackets <= 0 || lastWasOperator){
+                    return false;
+                }
+                openBrackets--;
+            }else if (isAnOperand(c)){
+                if (lastWasOperator || openBracketRemaining) return false;
+                    lastWasOperator = true;
+                    continue;
+            }else if(c < '0' || c > '9'){
+                return false;
+            }
+            lastWasOperator = false;
+            openBracketRemaining = false;
+        }
+
+        if(openBrackets != 0) return false;
+        if(lastWasOperator || openBracketRemaining) return false;
+        return true;
+    }
+
 }
