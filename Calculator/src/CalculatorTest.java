@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,19 +18,31 @@ public class CalculatorTest {
     public void testIsValid(){
         Calculator j = new Calculator();
 
-        String[] testCase = new String[] {"1","+","1"}; //1+1
+        String testCase ="1+1";
         assertTrue(j.isValid(testCase));
 
-        testCase = new String[] {"(","2","-","1",")","+","1"};//(2-1)+1
+        testCase ="(2-1)+1";
         assertTrue(j.isValid(testCase));
 
-        testCase = new String[] {"+","2","-","1"};
+        testCase ="+2-1";
         assertFalse(j.isValid(testCase));
 
-        testCase = new String[] {"(","2","+","1"}
+        testCase ="(2+1";
         assertFalse(j.isValid(testCase));
 
-        testCase = new String[] {"2","+","1",")"}
+        testCase ="2+1)";
         assertFalse(j.isValid(testCase));
+
+//        testCase = new String[] {"(","2","-","1",")","+","1"};//(2-1)+1
+//        assertTrue(j.isValid(testCase));
+//
+//        testCase = new String[] {"+","2","-","1"};
+//        assertFalse(j.isValid(testCase));
+//
+//        testCase = new String[] {"(","2","+","1"};
+//        assertFalse(j.isValid(testCase));
+//
+//        testCase = new String[] {"2","+","1",")"};
+//        assertFalse(j.isValid(testCase));
     }
 }

@@ -1,9 +1,9 @@
 import java.util.Stack;
 public class Calculator {
 
-    public boolean isOperand(String opp) {
+    public boolean isOperand(char opp) {
         return switch (opp) {
-            case "+", "-", "*" -> true;
+            case '+', '-', '*' -> true;
             default -> false;
         };
     }
@@ -44,7 +44,7 @@ public class Calculator {
         int i = 0;
         int length = pfExp.length;
         while ( length > 1) {
-            if (isOperand(pfExp[i])) {
+            if (isOperand(pfExp[i].charAt(0))) {
                 int var1 = Integer.parseInt(pfExp[i-2]);
                 int var2 = Integer.parseInt(pfExp[i-1]);
                 switch (pfExp[i]) {
@@ -67,9 +67,9 @@ public class Calculator {
         return Integer.parseInt(pfExp[0]);
     }
 
-    public boolean isValid(String[] exp){
+    public boolean isValid(String exp){
         //if expression starts or ends with an operator return false
-        if(isOperand(exp.charAt(0)) || isOperand(exp.charAt(exp.length-1)))
+        if(isOperand(exp.charAt(0)) || isOperand(exp.charAt(exp.length()-1)))
             return false;
 
         int openBrackets = 0; //count of openbrackets
@@ -88,7 +88,7 @@ public class Calculator {
                     return false;
                 }
                 openBrackets--;
-            }else if (isAnOperand(c)){
+            }else if (isOperand(c)){
                 if (lastWasOperator || openBracketRemaining) return false;
                     lastWasOperator = true;
                     continue;
