@@ -13,6 +13,7 @@ public class CalculatorTest {
     public void testCalculate() {
         Calculator j = new Calculator();
         assertEquals(5680, j.calculate("1234+567*8-90"));
+        assertEquals(0, j.calculate("1234++567**8--90"));
     }
     @Test
     public void testIsValid(){
@@ -22,7 +23,7 @@ public class CalculatorTest {
         assertTrue(j.isValid(testCase));
 
         testCase ="(2-1)+1";
-        assertTrue(j.isValid(testCase));
+        assertFalse(j.isValid(testCase));
 
         testCase ="+2-1";
         assertFalse(j.isValid(testCase));
@@ -33,16 +34,5 @@ public class CalculatorTest {
         testCase ="2+1)";
         assertFalse(j.isValid(testCase));
 
-//        testCase = new String[] {"(","2","-","1",")","+","1"};//(2-1)+1
-//        assertTrue(j.isValid(testCase));
-//
-//        testCase = new String[] {"+","2","-","1"};
-//        assertFalse(j.isValid(testCase));
-//
-//        testCase = new String[] {"(","2","+","1"};
-//        assertFalse(j.isValid(testCase));
-//
-//        testCase = new String[] {"2","+","1",")"};
-//        assertFalse(j.isValid(testCase));
     }
 }
