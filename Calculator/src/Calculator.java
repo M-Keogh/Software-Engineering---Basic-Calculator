@@ -1,6 +1,14 @@
+import java.util.Scanner;
 import java.util.Stack;
 public class Calculator {
 
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a mathematical expression:");
+        String exp = input.next();
+        Calculator calc = new Calculator();
+        System.out.println(calc.calculate(exp));
+    }
     // Function that checks if input is a valid operand
     public boolean isOperand(char opp) {
         return switch (opp) {
